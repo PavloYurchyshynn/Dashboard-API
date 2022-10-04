@@ -1,3 +1,4 @@
+import { IUsersRepository } from './users/users.repository.interface';
 import { IConfigService } from './config/config.service.interface';
 import { IExeptionFilter } from './errors/exeption.filter.interface';
 import { ILogger } from './logger/logger.interface';
@@ -11,6 +12,8 @@ import { IUsersController } from './users/users.controller.interface';
 import { IUserService } from './users/user.service.interface';
 import { UserService } from './users/user.service';
 import { ConfigService } from './config/config.service';
+import { PrismaService } from './database/prisma.service';
+import { UsersRepository } from './users/users.repository';
 
 export interface IBootstrapReturn {
 	appContainer: Container;
@@ -22,7 +25,9 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter);
 	bind<IUsersController>(TYPES.UserController).to(UserController);
 	bind<IUserService>(TYPES.UserService).to(UserService);
+	bind<PrismaService>(TYPES.PrismaService).to(PrismaService).inSingletonScope();
 	bind<IConfigService>(TYPES.ConfigService).to(ConfigService).inSingletonScope();
+	bind<IUsersRepository>(TYPES.UsersRepository).to(UsersRepository).inSingletonScope();
 	bind<App>(TYPES.Application).to(App);
 });
 
