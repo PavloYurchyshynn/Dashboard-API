@@ -48,6 +48,6 @@ export class App {
 		this.useExeptionFilters();
 		await this.prismaService.connect();
 		this.server = this.app.listen(this.port);
-		this.logger.log(`сервер запушений на http://localhost:${this.port}`);
+		this.logger.log(`сервер запущений на http://localhost:${this.port}`);
 	}
 }
